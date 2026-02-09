@@ -1,95 +1,126 @@
-"use client";
+// app/auth/register/page.tsx
+import type { Metadata } from "next";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import RegisterHeader from "@/components/register/RegisterHeader";
+import RegisterFooter from "@/components/register/RegisterFooter";
+import RegisterFormWrapper from "@/components/register/RegisterFormWrapper";
 
-import Navbar from "@/components/Navbar";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { registerThunk } from "@/store/slices/authThunks";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+// SEO Metadata
+export const metadata: Metadata = {
+  title: "নিবন্ধন করুন - তাবলীগ সিএমএস | মসজিদ ব্যবস্থাপনা সফটওয়্যার",
+  description:
+    "তাবলীগ সিএমএস-এ বিনামূল্যে রেজিস্ট্রেশন করুন। বাংলাদেশের মসজিদগুলোর জন্য উন্নত ডিজিটাল ব্যবস্থাপনা সমাধান।",
+  keywords: [
+    "তাবলীগ সিএমএস রেজিস্ট্রেশন",
+    "মসজিদ ব্যবস্থাপনা সফটওয়্যার",
+    "ইসলামিক কমিউনিটি ম্যানেজমেন্ট",
+    "বাংলাদেশ মসজিদ এপ",
+    "তাবলীগ কাজের সফটওয়্যার",
+    "মসজিদ রেজিস্ট্রেশন",
+    "ইসলামিক অ্যাপ বাংলাদেশ",
+  ],
+  authors: [{ name: "Tabligh CMS" }],
+  openGraph: {
+    title: "নিবন্ধন করুন - তাবলীগ সিএমএস",
+    description: "মসজিদ ব্যবস্থাপনার জন্য বিনামূল্যে অ্যাকাউন্ট তৈরি করুন",
+    type: "website",
+    locale: "bn_BD",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
 
 export default function RegisterPage() {
-  const router = useRouter();
-  const dispatch = useAppDispatch();
-  const { status, error } = useAppSelector((s) => s.auth);
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
-
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const res = await dispatch(
-      registerThunk({ name, email, password, phone: phone || undefined }),
-    );
-    if (registerThunk.fulfilled.match(res)) {
-      router.push("/dashboard");
-    }
-  }
-
   return (
-    <div className="min-h-screen font-tiro">
-      <Navbar />
-      <main className="mx-auto max-w-md px-4 py-10">
-        <div className="rounded-2xl border p-6 bg-white shadow-sm">
-          <h2 className="text-xl font-semibold">নতুন অ্যাকাউন্ট তৈরি করুন</h2>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-emerald-50 flex flex-col items-center justify-center  ">
+      {/* Schema.org Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "তাবলীগ সিএমএস - নিবন্ধন পৃষ্ঠা",
+            description:
+              "মসজিদ ও ইসলামিক সম্প্রদায় ব্যবস্থাপনার জন্য ডিজিটাল প্ল্যাটফর্মে নিবন্ধন করুন",
+            url: "https://tablighcms.com/auth/register",
+            potentialAction: {
+              "@type": "RegisterAction",
+              target: "https://tablighcms.com/api/auth/register",
+              description: "নতুন ব্যবহারকারী নিবন্ধন",
+            },
+          }),
+        }}
+      />
 
-          <form onSubmit={onSubmit} className="mt-5 space-y-4">
-            <div>
-              <label className="text-sm font-medium">পুরো নাম</label>
-              <input
-                className="mt-1 w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-1 focus:ring-black"
-                value={name}
-                placeholder="আপনার নাম লিখুন"
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </div>
+      {/* Schema.org for Organization */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "তাবলীগ সিএমএস",
+            description: "মসজিদ ও ইসলামিক সম্প্রদায় ব্যবস্থাপনা সফটওয়্যার",
+            url: "https://tablighcms.com",
+            logo: "https://tablighcms.com/logo.png",
+            sameAs: [
+              "https://facebook.com/tablighcms",
+              "https://twitter.com/tablighcms",
+            ],
+          }),
+        }}
+      />
 
-            <div>
-              <label className="text-sm font-medium">ইমেইল ঠিকানা</label>
-              <input
-                className="mt-1 w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-1 focus:ring-black"
-                value={email}
-                placeholder="example@mail.com"
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                required
-              />
-            </div>
+      <div className="w-full">
+        <Card className=" ">
+          <CardHeader>
+            <RegisterHeader />
+          </CardHeader>
 
-            <div>
-              <label className="text-sm font-medium">পাসওয়ার্ড</label>
-              <input
-                className="mt-1 w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-1 focus:ring-black"
-                value={password}
-                placeholder="কমপক্ষে ৬ সংখ্যার পাসওয়ার্ড"
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                required
-              />
-            </div>
+          <CardContent>
+            {/* Now using client wrapper component */}
+            <RegisterFormWrapper />
 
-            <div>
-              <label className="text-sm font-medium">ফোন নম্বর (ঐচ্ছিক)</label>
-              <input
-                className="mt-1 w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-1 focus:ring-black"
-                value={phone}
-                placeholder="আপনার ফোন নম্বর"
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </div>
+            <RegisterFooter />
+          </CardContent>
+        </Card>
+      </div>
 
-            {error && <p className="text-sm text-red-600">{String(error)}</p>}
-
-            <button
-              disabled={status === "loading"}
-              className="w-full rounded-xl bg-black text-white px-4 py-2 text-sm disabled:opacity-60 transition-all font-medium"
-            >
-              {status === "loading" ? "অপেক্ষা করুন..." : "নিবন্ধন করুন"}
-            </button>
-          </form>
-        </div>
-      </main>
+      {/* Hidden SEO content for better indexing */}
+      <div className="sr-only">
+        <h1>তাবলীগ সিএমএস নিবন্ধন</h1>
+        <h2>মসজিদ ব্যবস্থাপনা সফটওয়্যার বাংলাদেশ</h2>
+        <p>
+          তাবলীগ সিএমএস হল বাংলাদেশের মসজিদ ও ইসলামিক সম্প্রদায়ের জন্য
+          বিশেষভাবে ডিজাইনকৃত একটি ডিজিটাল ব্যবস্থাপনা প্ল্যাটফর্ম।
+        </p>
+        <p>
+          এই প্ল্যাটফর্মে আপনি সহজেই আপনার মসজিদের সাথী ব্যবস্থাপনা, দৈনিক তালীম
+          রেকর্ড, খুরূজ ট্র্যাকিং এবং বিস্তারিত প্রতিবেদন তৈরি করতে পারবেন।
+        </p>
+        <p>
+          বিনামূল্যে রেজিস্ট্রেশন করে আজই শুরু করুন আপনার মসজিদের ডিজিটাল
+          রূপান্তর।
+        </p>
+        <ul>
+          <li>সাথী ক্যাটাগরি ব্যবস্থাপনা</li>
+          <li>দৈনিক উপস্থিতি ট্র্যাকিং</li>
+          <li>খুরূজ প্রোগ্রাম ম্যানেজমেন্ট</li>
+          <li>বিস্তারিত বিশ্লেষণ ও প্রতিবেদন</li>
+          <li>বহু-মসজিদ সমর্থন</li>
+          <li>ভূমিকা-ভিত্তিক অ্যাক্সেস কন্ট্রোল</li>
+        </ul>
+      </div>
     </div>
   );
 }

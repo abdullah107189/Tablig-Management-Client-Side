@@ -18,7 +18,7 @@ export default function LoginPage() {
     e.preventDefault();
     const res = await dispatch(loginThunk({ email, password }));
     if (loginThunk.fulfilled.match(res)) {
-       router.push("/dashboard");
+      router.push("/dashboard");
     }
   }
 
