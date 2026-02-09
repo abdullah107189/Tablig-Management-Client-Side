@@ -1,0 +1,63 @@
+{
+  "app": {
+    "name": "Tabligh CMS",
+    "description": "Community Management System",
+    "tagline": "Organize, Track, Grow"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "sathi": "Sathi",
+    "talim": "Talim & Mashowara",
+    "khuruj": "Khuruj",
+    "reports": "Reports",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Today's overview and quick actions",
+    "todaySnapshot": "Today's Snapshot",
+    "quickActions": "Quick Actions",
+    "statusWidgets": "Status Widgets",
+    "recentActivity": "Recent Activity",
+    "alerts": "Alerts & Reminders",
+    "viewAll": "View All"
+  },
+  "cards": {
+    "todayAmir": "Today's 24h Amir",
+    "attendance": "Attendance",
+    "ghoreTalim": "Ghore Talim",
+    "mehnat": "2.5h Mehnat",
+    "activeKhuruj": "Active Khuruj",
+    "shabgujari": "Shabgujari This Week",
+    "threeDaysKhuruj": "3 Days Khuruj"
+  },
+  "actions": {
+    "talimEntry": "Talim/Mashowara Entry",
+    "threeDaysKhuruj": "3 Days Khuruj",
+    "shabgujari": "Shabgujari",
+    "activeKhuruj": "Active Khuruj",
+    "addSathi": "Add Sathi",
+    "addUpdate": "Add/Update today's entry",
+    "addMonthly": "Add 3 days khuruj this month",
+    "addWeekly": "Add weekly night program",
+    "addLong": "Add new long khuruj",
+    "addMember": "Add new community member"
+  },
+  "status": {
+    "active": "Active",
+    "completed": "Completed",
+    "pending": "Pending",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "mosque": {
+    "select": "Select Mosque",
+    "active": "Active",
+    "pending": "Pending",
+    "rejected": "Rejected"
+  },
+  "user": {
+    "profile": "Profile",
+    "logout": "Logout"
+  }
+}
